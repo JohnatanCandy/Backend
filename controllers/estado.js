@@ -1,14 +1,14 @@
 const db = require("../index");
 
 const controller = {
-    createEntidad: function(req, res){
-        let sql = `INSERT INTO entidad(EntidadD) VALUES('${req.body.EntidadD}')`;
+    createEstado: function(req, res){
+        let sql = `INSERT INTO estado(EstadoD) VALUES('${req.body.EstadoD}')`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
-                message: 'Error al insertar la entidad'
+                message: 'Error al insertar el estado'
             });
             if(!results) return res.status(404).send({
-                message: 'No se ha podido insertar la entidad'
+                message: 'No se ha podido insertar el estado'
             });
             return res.status(200).send({
                 results
@@ -16,14 +16,14 @@ const controller = {
         });
     },
 
-    updateEntidad: function(req, res){
-        let sql = `UPDATE entidad SET EntidadD = "${req.body.EntidadD}" WHERE IdEntidad = ${req.params.id}`
+    updateEstado: function(req, res){
+        let sql = `UPDATE estado SET EstadoD = "${req.body.EstadoD}" WHERE IdEstado = ${req.params.id}`
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
-                message: 'Error al actualizar la entidad'
+                message: 'Error al actualizar el estado'
             });
             if(!results) return res.status(404).send({
-                message: 'No se ha podido actualizar la entidad'
+                message: 'No se ha podido actualizar el estado'
             });
             return res.status(200).send({
                 results
@@ -31,40 +31,40 @@ const controller = {
         });
     },
 
-    getEntidad: function (req, res) {
-        let sql = `SELECT * FROM entidad WHERE IdEntidad = ${req.params.id}`
+    getEstado: function (req, res) {
+        let sql = `SELECT * FROM estado WHERE IdEstado = ${req.params.id}`
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
-                message: 'Error al obtener la entidad'
+                message: 'Error al obtener el estado'
             });
             if(!results || results.length === 0)  return res.status(404).send({
-                message: 'No se ha podido obtener la entidad'
+                message: 'No se ha podido obtener el estado'
             });
             return res.status(200).send(results[0]);
         });
     },
 
-    getEntidades: function (req, res) {
-        let sql = `SELECT * FROM entidad`;
+    getEstados: function (req, res) {
+        let sql = `SELECT * FROM estado`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
-                message: 'Error al obterner entidades'
+                message: 'Error al obterner estados'
             });
             if(!results) return res.status(404).send({
-                message: 'No se ha podido obtener entidades'
+                message: 'No se ha podido obtener estados'
             });
             return res.status(200).send(results);
         });
     },
 
-    deleteEntidad: function(req, res) {
-        let sql = `DELETE FROM entidad WHERE IdEntidad = ${req.params.id}`
+    deleteEstado: function(req, res) {
+        let sql = `DELETE FROM estado WHERE IdEstado = ${req.params.id}`
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
-                message: 'Error al eliminar la entidad'
+                message: 'Error al eliminar el estado'
             });
             if(!results) return res.status(404).send({
-                message: 'No se ha podido eliminar la entidad'
+                message: 'No se ha podido eliminar el estado'
             });
             return res.status(200).send({
                 results

@@ -1,57 +1,67 @@
 const express = require('express');
-const EntidadController = require('../controllers/entidad');
+const UsuarioController = require('../controllers/usuario');
 
 const router = express.Router();
 
 /**
  * @swagger
  * path:
- *  /entidades:
+ *  /usuarios:
  *    post:
- *      summary: Crear una nueva entidad
+ *      summary: Crear un nuevo usuario
  *      tags:
- *          - entidad
+ *          - usuario
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: body
- *          name: entidad
+ *          name: usuario
  *          required: true
- *          description: La entidad a crear
+ *          description: El usuario a crear
  *          schema:
  *              type: object
  *              properties:
- *                  EntidadD:
+ *                  CI:
+ *                      type: number
+ *                  Nombre:
  *                      type: string
+ *                  Contrasena:
+ *                      type: string
+ *                  IdEntidad:
+ *                      type: number
  *      responses:
  *        "200":
- *          description: Entidad creada exitosamente
+ *          description: Usuario creado exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.post('/entidades', EntidadController.createEntidad);
+router.post('/usuarios', UsuarioController.createUsuario);
 
 /**
  * @swagger
  * path:
- *  /entidades:
+ *  /usuarios:
  *    get:
- *      summary: Obtener una lista de todas las entidades
+ *      summary: Obtener una lista de todos los usuarios
  *      tags:
- *          - entidad
+ *          - usuario
  *      consumes:
  *          - application/json
  *      responses:
  *        "200":
- *          description: Entidades obtenidas exitosamente
+ *          description: Usuarios obtenidos exitosamente
  *          schema:
  *              type: array
  *              items:
  *                  properties:
- *                      IdEntidad:
+ *                      CI:
  *                          type: integer
+ *                      Nombre:
+ *                          type: string
+ *                      Contrasena:
+ *                          type: string
  *                      EntidadD:
  *                          type: string
  *        "404":
@@ -59,100 +69,110 @@ router.post('/entidades', EntidadController.createEntidad);
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.get('/entidades', EntidadController.getEntidades);
+router.get('/usuarios', UsuarioController.getUsuarios);
 
 /**
  * @swagger
  * path:
- *  /entidad/{id}:
+ *  /usuario/{id}:
  *    get:
- *      summary: Obtener detalles de una entidad
+ *      summary: Obtener detalles de un usuario
  *      tags:
- *          - entidad
+ *          - usuario
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: path
  *          name: id
- *          description: id de la entidad a obtener
+ *          description: id del usuario a obtener
  *          required: true
  *          type: integer
  *      responses:
  *        "200":
- *          description: Entidad obtenida exitosamente
+ *          description: Usuario obtenido exitosamente
  *          schema:
  *              type: object
  *              properties:
- *                  IdEntidad:
+ *                  CI:
  *                      type: integer
+ *                  Nombre:
+    *                   type: string
+ *                  Contrasena:
+ *                      type: string
  *                  EntidadD:
  *                      type: string
  *        "404":
- *          description: No existe una entidad con ese id
+ *          description: No existe un usuario con ese id
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.get('/entidad/:id', EntidadController.getEntidad);
+router.get('/usuario/:id', UsuarioController.getUsuario);
 
 /**
  * @swagger
  * path:
- *  /entidad/{id}:
+ *  /usuario/{id}:
  *    put:
- *      summary: Actualzar una entidad
+ *      summary: Actualzar un usuario
  *      tags:
- *          - entidad
+ *          - usuario
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: path
  *          name: id
- *          description: id de la entidad a actualizar
+ *          description: id del usuario a actualizar
  *          required: true
  *          type: integer
  *      -   in: body
- *          name: entidad
+ *          name: usuario
  *          required: true
- *          description: La entidad a actualizar
+ *          description: El usuario a actualizar
  *          schema:
  *              type: object
  *              properties:
- *                  EntidadD:
- *                     type: string
+ *                  CI:
+ *                      type: integer
+ *                  Nombre:
+ *                      type: string
+ *                  Contrasena:
+ *                      type: string
+ *                  IdEntidad:
+ *                      type: number
  *      responses:
  *        "200":
- *          description: Entidad actualizada exitosamente
+ *          description: Usuario actualizado exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.put('/entidad/:id', EntidadController.updateEntidad);
+router.put('/usuario/:id', UsuarioController.updateUsuario);
 
 /**
  * @swagger
  * path:
- *  /entidad/{id}:
+ *  /usuario/{id}:
  *    delete:
- *      summary: Eliminar una entidad
+ *      summary: Eliminar un usuario
  *      tags:
- *          - entidad
+ *          - usuario
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: path
  *          name: id
- *          description: id de la entidad a eliminar
+ *          description: id del usuario a eliminar
  *          required: true
  *          type: integer
  *      responses:
  *        "200":
- *          description: Entidad eliminada exitosamente
+ *          description: Usuario eliminado exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.delete('/entidad/:id', EntidadController.deleteEntidad);
+router.delete('/usuario/:id', UsuarioController.deleteUsuario);
 
 module.exports = router;

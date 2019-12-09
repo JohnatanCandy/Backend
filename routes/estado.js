@@ -1,158 +1,158 @@
 const express = require('express');
-const EntidadController = require('../controllers/entidad');
+const EstadoController = require('../controllers/estado');
 
 const router = express.Router();
 
 /**
  * @swagger
  * path:
- *  /entidades:
+ *  /estados:
  *    post:
- *      summary: Crear una nueva entidad
+ *      summary: Crear un nuevo estado
  *      tags:
- *          - entidad
+ *          - estado
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: body
- *          name: entidad
+ *          name: estado
  *          required: true
- *          description: La entidad a crear
+ *          description: El estado a crear
  *          schema:
  *              type: object
  *              properties:
- *                  EntidadD:
+ *                  EstadoD:
  *                      type: string
  *      responses:
  *        "200":
- *          description: Entidad creada exitosamente
+ *          description: Estado creado exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.post('/entidades', EntidadController.createEntidad);
+router.post('/estados', EstadoController.createEstado);
 
 /**
  * @swagger
  * path:
- *  /entidades:
+ *  /estados:
  *    get:
- *      summary: Obtener una lista de todas las entidades
+ *      summary: Obtener una lista de todos los estados
  *      tags:
- *          - entidad
+ *          - estado
  *      consumes:
  *          - application/json
  *      responses:
  *        "200":
- *          description: Entidades obtenidas exitosamente
+ *          description: Estados obtenidos exitosamente
  *          schema:
  *              type: array
  *              items:
  *                  properties:
- *                      IdEntidad:
+ *                      IdEstado:
  *                          type: integer
- *                      EntidadD:
+ *                      EstadoD:
  *                          type: string
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.get('/entidades', EntidadController.getEntidades);
+router.get('/estados', EstadoController.getEstados);
 
 /**
  * @swagger
  * path:
- *  /entidad/{id}:
+ *  /estado/{id}:
  *    get:
- *      summary: Obtener detalles de una entidad
+ *      summary: Obtener detalles de un estado
  *      tags:
- *          - entidad
+ *          - estado
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: path
  *          name: id
- *          description: id de la entidad a obtener
+ *          description: id del estado a obtener
  *          required: true
  *          type: integer
  *      responses:
  *        "200":
- *          description: Entidad obtenida exitosamente
+ *          description: Estado obtenido exitosamente
  *          schema:
  *              type: object
  *              properties:
- *                  IdEntidad:
+ *                  IdEstado:
  *                      type: integer
- *                  EntidadD:
+ *                  EstadoD:
  *                      type: string
  *        "404":
- *          description: No existe una entidad con ese id
+ *          description: No existe un estado con ese id
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.get('/entidad/:id', EntidadController.getEntidad);
+router.get('/estado/:id', EstadoController.getEstado);
 
 /**
  * @swagger
  * path:
- *  /entidad/{id}:
+ *  /estado/{id}:
  *    put:
- *      summary: Actualzar una entidad
+ *      summary: Actualzar un estado
  *      tags:
- *          - entidad
+ *          - estado
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: path
  *          name: id
- *          description: id de la entidad a actualizar
+ *          description: id del estado a actualizar
  *          required: true
  *          type: integer
  *      -   in: body
- *          name: entidad
+ *          name: estado
  *          required: true
- *          description: La entidad a actualizar
+ *          description: El estado a actualizar
  *          schema:
  *              type: object
  *              properties:
- *                  EntidadD:
- *                     type: string
+ *                  EstadoD:
+ *                      type: string
  *      responses:
  *        "200":
- *          description: Entidad actualizada exitosamente
+ *          description: Estado actualizado exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.put('/entidad/:id', EntidadController.updateEntidad);
+router.put('/estado/:id', EstadoController.updateEstado);
 
 /**
  * @swagger
  * path:
- *  /entidad/{id}:
+ *  /estado/{id}:
  *    delete:
- *      summary: Eliminar una entidad
+ *      summary: Eliminar un estado
  *      tags:
- *          - entidad
+ *          - estado
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: path
  *          name: id
- *          description: id de la entidad a eliminar
+ *          description: id del estado a eliminar
  *          required: true
  *          type: integer
  *      responses:
  *        "200":
- *          description: Entidad eliminada exitosamente
+ *          description: Estado eliminado exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.delete('/entidad/:id', EntidadController.deleteEntidad);
+router.delete('/estado/:id', EstadoController.deleteEstado);
 
 module.exports = router;

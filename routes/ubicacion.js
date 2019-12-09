@@ -1,158 +1,158 @@
 const express = require('express');
-const EntidadController = require('../controllers/entidad');
+const UbicacionController = require('../controllers/ubicacion');
 
 const router = express.Router();
 
 /**
  * @swagger
  * path:
- *  /entidades:
+ *  /ubicaciones:
  *    post:
- *      summary: Crear una nueva entidad
+ *      summary: Crear una nueva ubicacion
  *      tags:
- *          - entidad
+ *          - ubicacion
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: body
- *          name: entidad
+ *          name: ubicacion
  *          required: true
- *          description: La entidad a crear
+ *          description: La ubicacion a crear
  *          schema:
  *              type: object
  *              properties:
- *                  EntidadD:
+ *                  UbicacionD:
  *                      type: string
  *      responses:
  *        "200":
- *          description: Entidad creada exitosamente
+ *          description: Ubicacion creada exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.post('/entidades', EntidadController.createEntidad);
+router.post('/ubicaciones/', UbicacionController.createUbicacion);
 
 /**
  * @swagger
  * path:
- *  /entidades:
+ *  /ubicaciones:
  *    get:
- *      summary: Obtener una lista de todas las entidades
+ *      summary: Obtener una lista de todas las ubicaciones
  *      tags:
- *          - entidad
+ *          - ubicacion
  *      consumes:
  *          - application/json
  *      responses:
  *        "200":
- *          description: Entidades obtenidas exitosamente
+ *          description: Ubicaciones obtenidas exitosamente
  *          schema:
  *              type: array
  *              items:
  *                  properties:
- *                      IdEntidad:
+ *                      IdUbicacion:
  *                          type: integer
- *                      EntidadD:
+ *                      UbicacionD:
  *                          type: string
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.get('/entidades', EntidadController.getEntidades);
+router.get('/ubicaciones/', UbicacionController.getUbicaciones);
 
 /**
  * @swagger
  * path:
- *  /entidad/{id}:
+ *  /ubicacion/{id}:
  *    get:
- *      summary: Obtener detalles de una entidad
+ *      summary: Obtener detalles de una ubicacion
  *      tags:
- *          - entidad
+ *          - ubicacion
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: path
  *          name: id
- *          description: id de la entidad a obtener
+ *          description: id de la ubicacion a obtener
  *          required: true
  *          type: integer
  *      responses:
  *        "200":
- *          description: Entidad obtenida exitosamente
+ *          description: Ubicacion obtenida exitosamente
  *          schema:
  *              type: object
  *              properties:
- *                  IdEntidad:
+ *                  IdUbicacion:
  *                      type: integer
- *                  EntidadD:
+ *                  UbicacionD:
  *                      type: string
  *        "404":
- *          description: No existe una entidad con ese id
+ *          description: No existe una ubicacion con ese id
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.get('/entidad/:id', EntidadController.getEntidad);
+router.get('/ubicacion/:id', UbicacionController.getUbicacion);
 
 /**
  * @swagger
  * path:
- *  /entidad/{id}:
+ *  /ubicacion/{id}:
  *    put:
- *      summary: Actualzar una entidad
+ *      summary: Actualzar una ubicacion
  *      tags:
- *          - entidad
+ *          - ubicacion
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: path
  *          name: id
- *          description: id de la entidad a actualizar
+ *          description: id de la ubicacion a actualizar
  *          required: true
  *          type: integer
  *      -   in: body
- *          name: entidad
+ *          name: ubicacion
  *          required: true
- *          description: La entidad a actualizar
+ *          description: La ubicacion a actualizar
  *          schema:
  *              type: object
  *              properties:
- *                  EntidadD:
+ *                  UbicacionD:
  *                     type: string
  *      responses:
  *        "200":
- *          description: Entidad actualizada exitosamente
+ *          description: Ubicacion actualizada exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.put('/entidad/:id', EntidadController.updateEntidad);
+router.put('/ubicacion/:id', UbicacionController.updateUbicacion);
 
 /**
  * @swagger
  * path:
- *  /entidad/{id}:
+ *  /ubicacion/{id}:
  *    delete:
- *      summary: Eliminar una entidad
+ *      summary: Eliminar una ubicacion
  *      tags:
- *          - entidad
+ *          - ubicacion
  *      consumes:
  *          - application/json
  *      parameters:
  *      -   in: path
  *          name: id
- *          description: id de la entidad a eliminar
+ *          description: id de la ubicacion a eliminar
  *          required: true
  *          type: integer
  *      responses:
  *        "200":
- *          description: Entidad eliminada exitosamente
+ *          description: Ubicacion eliminada exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.delete('/entidad/:id', EntidadController.deleteEntidad);
+router.delete('/ubicacion/:id', UbicacionController.deleteUbicacion);
 
 module.exports = router;
