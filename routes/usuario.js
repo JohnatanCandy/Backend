@@ -29,6 +29,8 @@ const router = express.Router();
  *                      type: string
  *                  IdEntidad:
  *                      type: number
+ *                  TipoUsuario:
+ *                      type: number
  *      responses:
  *        "200":
  *          description: Usuario creado exitosamente
@@ -64,6 +66,8 @@ router.post('/usuarios', UsuarioController.createUsuario);
  *                          type: string
  *                      EntidadD:
  *                          type: string
+ *                      TipoUsuario:
+ *                          type: number
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
@@ -101,6 +105,8 @@ router.get('/usuarios', UsuarioController.getUsuarios);
  *                      type: string
  *                  EntidadD:
  *                      type: string
+ *                  TipoUsuario:
+ *                      type: number
  *        "404":
  *          description: No existe un usuario con ese id
  *        "500":
@@ -138,6 +144,8 @@ router.get('/usuario/:id', UsuarioController.getUsuario);
  *                  Contrasena:
  *                      type: string
  *                  IdEntidad:
+ *                      type: number
+ *                  TipoUsuario:
  *                      type: number
  *      responses:
  *        "200":

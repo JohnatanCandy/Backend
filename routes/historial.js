@@ -22,7 +22,7 @@ const router = express.Router();
  *              type: object
  *              properties:
  *                  IdBien:
- *                      type: number
+ *                      type: string
  *                  IdUsuario:
  *                      type: number
  *                  FechaTransaccion:
@@ -57,6 +57,8 @@ router.post('/transacciones', TransaccionController.createTransaccion);
  *                  properties:
  *                      NroTransaccion:
  *                          type: number
+ *                      IdBien:
+ *                          type: string
  *                      UbicacionD:
  *                          type: string
  *                      ClasificacionD:
@@ -98,6 +100,8 @@ router.get('/transacciones', TransaccionController.getTransacciones);
  *              properties:
  *                  NroTransaccion:
  *                      type: number
+ *                  IdBien:
+ *                      type: string
  *                  UbicacionD:
  *                      type: string
  *                  ClasificacionD:
@@ -139,7 +143,7 @@ router.get('/transaccion/:id', TransaccionController.getTransaccion);
  *              type: object
  *              properties:
  *                  IdBien:
- *                      type: number
+ *                      type: string
  *                  IdUsuario:
  *                      type: number
  *                  FechaTransaccion:

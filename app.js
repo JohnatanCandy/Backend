@@ -42,13 +42,14 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
 
 //rutas
 app.use('', bien_routes);
-app.use('', clasificacion_routes);r
+app.use('', clasificacion_routes);
 app.use('', entidad_routes);
 app.use('', estado_routes);
 app.use('', transaccion_routes);

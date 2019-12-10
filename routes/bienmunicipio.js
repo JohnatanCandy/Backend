@@ -21,6 +21,8 @@ const router = express.Router();
  *          schema:
  *              type: object
  *              properties:
+ *                  IdBien:
+ *                      type: string
  *                  IdUbicacion:
  *                      type: number
  *                  IdClasificacion:
@@ -61,7 +63,7 @@ router.post('/bienes/', BienController.createBien);
  *              items:
  *                  properties:
  *                      IdBien:
- *                          type: integer
+ *                          type: string
  *                      UbicacionD:
  *                          type: string
  *                      ClasificacionD:
@@ -95,7 +97,7 @@ router.get('/bienes/', BienController.getBienes);
  *          name: id
  *          description: id del bien a obtener
  *          required: true
- *          type: integer
+ *          type: string
  *      responses:
  *        "200":
  *          description: Bien obtenido exitosamente
@@ -103,7 +105,7 @@ router.get('/bienes/', BienController.getBienes);
  *              type: object
  *              properties:
  *                  IdBien:
- *                      type: integer
+ *                      type: string
  *                  UbicacionD:
  *                      type: string
  *                  ClasificacionD:
@@ -138,7 +140,7 @@ router.get('/bien/:id', BienController.getBien);
  *          name: id
  *          description: id del bien a actualizar
  *          required: true
- *          type: integer
+ *          type: string
  *      -   in: body
  *          name: bien
  *          required: true
@@ -183,7 +185,7 @@ router.put('/bien/:id', BienController.updateBien);
  *          name: id
  *          description: id del bien a eliminar
  *          required: true
- *          type: integer
+ *          type: string
  *      responses:
  *        "200":
  *          description: Bien eliminado exitosamente
