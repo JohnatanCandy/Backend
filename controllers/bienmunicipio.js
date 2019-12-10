@@ -2,8 +2,8 @@ const db = require("../index");
 
 const controller = {
     createBien: function(req, res){
-        let sql = `INSERT INTO bienmunicipio(IdUbicacion, IdClasificacion, IdEstado, Responsable, Calificacion, Precio) 
-            VALUES(${req.body.IdUbicacion}, ${req.body.IdClasificacion}, ${req.body.IdEstado}, ${req.body.Responsable},
+        let sql = `INSERT INTO bienmunicipio(IdBien, IdUbicacion, IdClasificacion, IdEstado, Responsable, Calificacion, Precio) 
+            VALUES("${req.body.IdBien}", ${req.body.IdUbicacion}, ${req.body.IdClasificacion}, ${req.body.IdEstado}, ${req.body.Responsable},
             "${req.body.Calificacion}", ${req.body.Precio})`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
@@ -26,7 +26,7 @@ const controller = {
             Responsable=${req.body.Responsable}, 
             Calificacion="${req.body.Calificacion}", 
             Precio="${req.body.Precio}"
-            WHERE IdBien = ${req.params.id}
+            WHERE IdBien = "${req.params.id}"
             `;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
@@ -47,7 +47,7 @@ const controller = {
             WHERE bienmunicipio.IdUbicacion=ubicacion.IdUbicacion
                 AND bienmunicipio.IdClasificacion=clasificacion.IdClasificacion
                 AND bienmunicipio.IdEstado=estado.IdEstado
-                AND IdBien=${req.params.id}`;
+                AND IdBien="${req.params.id}"`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
                 message: 'Error al obtener el bien'
@@ -77,7 +77,7 @@ const controller = {
     },
 
     deleteBien: function(req, res) {
-        let sql = `DELETE FROM bienmunicipio WHERE IdBien = ${req.params.id}`
+        let sql = `DELETE FROM bienmunicipio WHERE IdBien = "${req.params.id}"`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
                 message: 'Error al eliminar el bien'

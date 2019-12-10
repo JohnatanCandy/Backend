@@ -2,8 +2,8 @@ const db = require("../index");
 
 const controller = {
     createUsuario: function(req, res){
-        let sql = `INSERT INTO usuario(CI, Nombre, Contrasena, IdEntidad) 
-            VALUES(${req.body.CI}, "${req.body.Nombre}", "${req.body.Contrasena}", ${req.body.IdEntidad})`;
+        let sql = `INSERT INTO usuario(CI, Nombre, Contrasena, IdEntidad, TipoUsuario) 
+            VALUES(${req.body.CI}, "${req.body.Nombre}", "${req.body.Contrasena}", ${req.body.IdEntidad}), ${req.body.TipoUsuario}`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
                 message: 'Error al insertar el usuario'
@@ -22,7 +22,8 @@ const controller = {
             CI=${req.body.CI},
             Nombre="${req.body.Nombre}",
             Contrasena="${req.body.Contrasena}",
-            IdEntidad=${req.body.IdEntidad}
+            IdEntidad=${req.body.IdEntidad},
+            TipoUsuario=${req.body.TipoUsuario}
             WHERE CI = ${req.params.id}
             `;
         db.connection.query(sql, (err, results) => {
@@ -39,7 +40,7 @@ const controller = {
     },
 
     getUsuario: function (req, res) {
-        let sql = `SELECT CI, Nombre, Contrasena, EntidadD
+        let sql = `SELECT CI, Nombre, Contrasena, EntidadD, TipoUsuario
             FROM usuario, entidad
             WHERE usuario.IdEntidad=entidad.IdEntidad
             AND CI=${req.params.id}`;
@@ -55,7 +56,7 @@ const controller = {
     },
 
     getUsuarios: function (req, res) {
-        let sql = `SELECT CI, Nombre, Contrasena, EntidadD
+        let sql = `SELECT CI, Nombre, Contrasena, EntidadD, TipoUsuario
             FROM usuario, entidad
             WHERE usuario.IdEntidad=entidad.IdEntidad`;
         db.connection.query(sql, (err, results) => {
@@ -70,7 +71,7 @@ const controller = {
     },
 
     deleteUsuario: function(req, res) {
-        let sql = `DELETE FROM usuario WHERE CI = ${req.params.id}`
+        let sql = `DELETE FROM usuario WHERE CI = ${req.params.id}`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
                 message: 'Error al eliminar el usuario'

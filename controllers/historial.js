@@ -3,7 +3,7 @@ const db = require("../index");
 const controller = {
     createTransaccion: function(req, res){
         let sql = `INSERT INTO historial(IdBien, IdUsuario, FechaTransaccion) 
-            VALUES(${req.body.IdBien}, ${req.body.IdUsuario}, "${req.body.FechaTransaccion}")`;
+            VALUES("${req.body.IdBien}", ${req.body.IdUsuario}, "${req.body.FechaTransaccion}")`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
                 message: 'Error al insertar la transaccion',
@@ -19,7 +19,7 @@ const controller = {
 
     updateTransaccion: function(req, res){
         let sql = `UPDATE historial SET
-            IdBien=${req.body.IdBien},
+            IdBien="${req.body.IdBien}",
             IdUsuario=${req.body.IdUsuario}, 
             FechaTransaccion="${req.body.FechaTransaccion}"
             WHERE NroTransaccion = ${req.params.id}
@@ -38,7 +38,7 @@ const controller = {
     },
 
     getTransaccion: function (req, res) {
-        let sql = `SELECT NroTransaccion, UbicacionD, ClasificacionD, CI, Nombre, FechaTransaccion
+        let sql = `SELECT NroTransaccion, IdBien, UbicacionD, ClasificacionD, CI, Nombre, FechaTransaccion
             FROM historial, bienmunicipio, ubicacion, clasificacion, usuario
             WHERE historial.IdBien=bienmunicipio.IdBien
                 AND bienmunicipio.IdUbicacion=ubicacion.IdUbicacion
@@ -57,7 +57,7 @@ const controller = {
     },
 
     getTransacciones: function (req, res) {
-        let sql = `SELECT NroTransaccion, UbicacionD, ClasificacionD, CI, Nombre, FechaTransaccion
+        let sql = `SELECT NroTransaccion, historial.IdBien, UbicacionD, ClasificacionD, CI, Nombre, FechaTransaccion
             FROM historial, bienmunicipio, ubicacion, clasificacion, usuario
             WHERE historial.IdBien=bienmunicipio.IdBien
                 AND bienmunicipio.IdUbicacion=ubicacion.IdUbicacion
@@ -75,7 +75,7 @@ const controller = {
     },
 
     deleteTransaccion: function(req, res) {
-        let sql = `DELETE FROM historial WHERE NroTransaccion = ${req.params.id}`
+        let sql = `DELETE FROM historial WHERE NroTransaccion = ${req.params.id}`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
                 message: 'Error al eliminar la transaccion'
