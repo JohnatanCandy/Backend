@@ -3,7 +3,7 @@ const db = require("../index");
 const controller = {
     createUsuario: function(req, res){
         let sql = `INSERT INTO usuario(CI, Nombre, Contrasena, IdEntidad, TipoUsuario) 
-            VALUES(${req.body.CI}, "${req.body.Nombre}", "${req.body.Contrasena}", ${req.body.IdEntidad}), ${req.body.TipoUsuario}`;
+            VALUES(${req.body.CI}, "${req.body.Nombre}", "${req.body.Contrasena}", ${req.body.IdEntidad}, ${req.body.TipoUsuario})`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
                 message: 'Error al insertar el usuario'
