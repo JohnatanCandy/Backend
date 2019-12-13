@@ -2,7 +2,7 @@ const db = require("../index");
 
 const controller = {
     createBien: function(req, res){
-        let sql = `INSERT INTO bienmunicipio(IdBien, IdUbicacion, IdClasificacion, IdEstado, Responsable, Calificacion, Precio) 
+        let sql = `INSERT INTO bienmunicipio(IdBien, IdUbicacion, IdClasificacion, IdEstado, Responsable, Calificacion, Precio)
             VALUES("${req.body.IdBien}", ${req.body.IdUbicacion}, ${req.body.IdClasificacion}, ${req.body.IdEstado}, ${req.body.Responsable},
             "${req.body.Calificacion}", ${req.body.Precio})`;
         db.connection.query(sql, (err, results) => {
@@ -65,6 +65,24 @@ const controller = {
             WHERE bienmunicipio.IdUbicacion=ubicacion.IdUbicacion
                 AND bienmunicipio.IdClasificacion=clasificacion.IdClasificacion
                 AND bienmunicipio.IdEstado=estado.IdEstado`;
+        db.connection.query(sql, (err, results) => {
+            if(err) return res.status(500).send({
+                message: 'Error al obtener bienes'
+            });
+            if(!results) return res.status(404).send({
+                message: 'No se ha podido obtener bienes'
+            });
+            return res.status(200).send(results);
+        });
+    },
+
+    getBienesPorResponsable: function (req, res) {
+        let sql = `SELECT IdBien, UbicacionD, ClasificacionD, EstadoD, Responsable, Calificacion, Precio
+            FROM bienmunicipio, ubicacion, clasificacion, estado
+            WHERE bienmunicipio.IdUbicacion=ubicacion.IdUbicacion
+                AND bienmunicipio.IdClasificacion=clasificacion.IdClasificacion
+                AND bienmunicipio.IdEstado=estado.IdEstado
+                AND bienmunicipio.Responsable=${req.params.ci}`;
         db.connection.query(sql, (err, results) => {
             if(err) return res.status(500).send({
                 message: 'Error al obtener bienes'

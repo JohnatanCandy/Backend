@@ -82,6 +82,7 @@ router.post('/bienes/', BienController.createBien);
  *          description: Error de conexion con la base de datos
  */
 router.get('/bienes/', BienController.getBienes);
+
 /**
  * @swagger
  * path:
@@ -124,6 +125,50 @@ router.get('/bienes/', BienController.getBienes);
  *          description: Error de conexion con la base de datos
  */
 router.get('/bien/:id', BienController.getBien);
+
+/**
+ * @swagger
+ * path:
+ *  /bienes/responsable/{ci}:
+ *    get:
+ *      summary: Obtener una lista de todos los bienes por responsable
+ *      tags:
+ *          - bien
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *      -   in: path
+ *          name: ci
+ *          description: ci del responsable del cual se quiere obtener sus bienes
+ *          required: true
+ *          type: number
+ *      responses:
+ *        "200":
+ *          description: Bienes obtenidos exitosamente
+ *          schema:
+ *              type: array
+ *              items:
+ *                  properties:
+ *                      IdBien:
+ *                          type: string
+ *                      UbicacionD:
+ *                          type: string
+ *                      ClasificacionD:
+ *                          type: string
+ *                      EstadoD:
+ *                          type: string
+ *                      Responsable:
+ *                          type: integer
+ *                      Calificacion:
+ *                          type: string
+ *                      Precio:
+ *                          type: integer
+ *        "404":
+ *          description: Error al realizar la consulta
+ *        "500":
+ *          description: Error de conexion con la base de datos
+ */
+router.get('/bienes/responsable/:ci', BienController.getBienesPorResponsable);
 
 /**
  * @swagger
