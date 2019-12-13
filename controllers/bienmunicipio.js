@@ -77,7 +77,7 @@ const controller = {
     },
 
     getBienesPorResponsable: function (req, res) {
-        let sql = `SELET IdBien, UbicacionD, ClasificacionD, EstadoD, Responsable, Calificacion, Precio
+        let sql = `SELECT IdBien, UbicacionD, ClasificacionD, EstadoD, Responsable, Calificacion, Precio
             FROM bienmunicipio, ubicacion, clasificacion, estado
             WHERE bienmunicipio.IdUbicacion=ubicacion.IdUbicacion
                 AND bienmunicipio.IdClasificacion=clasificacion.IdClasificacion
