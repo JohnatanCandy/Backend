@@ -1,10 +1,12 @@
-name: Prueba CI
+name: Empaquetamiento
 on: [push]
 jobs:
   prueba:
-    name: Prueba de Comando
-    runs-on: ubuntu-latest
+    name: prueba de comando
+    runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v1
-      - name: Listado
-        run:  ls
+      - run: mkdir Backend-zip
+      - uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r -vl ./Backend-zip/Backend.zip ./backend
