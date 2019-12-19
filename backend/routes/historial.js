@@ -14,6 +14,10 @@ const router = express.Router();
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: body
  *          name: transaccion
  *          required: true
@@ -48,6 +52,11 @@ router.post('/transacciones', TransaccionController.createTransaccion);
  *          - transaccion
  *      consumes:
  *          - application/json
+ *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      responses:
  *        "200":
  *          description: Transacciones obtenidas exitosamente
@@ -87,6 +96,10 @@ router.get('/transacciones', TransaccionController.getTransacciones);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id de la transaccion a obtener
@@ -130,6 +143,10 @@ router.get('/transaccion/:id', TransaccionController.getTransaccion);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id de la transaccion a actualizar
@@ -169,6 +186,10 @@ router.put('/transaccion/:id', TransaccionController.updateTransaccion);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id de la transaccion a eliminar

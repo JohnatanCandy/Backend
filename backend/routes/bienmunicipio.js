@@ -14,6 +14,10 @@ const router = express.Router();
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: body
  *          name: bien
  *          required: true
@@ -55,6 +59,11 @@ router.post('/bienes/', BienController.createBien);
  *          - bien
  *      consumes:
  *          - application/json
+ *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      responses:
  *        "200":
  *          description: Bienes obtenidos exitosamente
@@ -94,6 +103,10 @@ router.get('/bienes/', BienController.getBienes);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id del bien a obtener
@@ -137,6 +150,10 @@ router.get('/bien/:id', BienController.getBien);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: ci
  *          description: ci del responsable del cual se quiere obtener sus bienes
@@ -181,6 +198,10 @@ router.get('/bienes/responsable/:ci', BienController.getBienesPorResponsable);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id del bien a actualizar
@@ -226,6 +247,10 @@ router.put('/bien/:id', BienController.updateBien);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id del bien a eliminar
