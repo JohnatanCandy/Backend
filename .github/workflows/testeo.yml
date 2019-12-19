@@ -1,0 +1,25 @@
+name: Testeo
+on: [push]
+jobs:
+  eslint:
+    name: esLint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: install node v12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: yarn install
+      run: yarn install
+    - name: add eslint
+      run: yarn add eslint
+    - name: eslint
+      uses: icrawl/action-eslint@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        lint-all: true
+        job-name: eslint
+    - name: deprecatedDependencies
+      uses: tinovyatkin/action-check-deprecated-js-deps@v1
