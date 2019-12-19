@@ -1,158 +1,179 @@
 const express = require('express');
-const ClasificacionController = require('../controllers/clasificacion');
+const EntidadController = require('../controllers/entidad');
 
 const router = express.Router();
 
 /**
  * @swagger
  * path:
- *  /clasificaciones:
+ *  /entidades:
  *    post:
- *      summary: Crear una nueva clasificacion
+ *      summary: Crear una nueva entidad
  *      tags:
- *          - clasificacion
+ *          - entidad
  *      consumes:
  *          - application/json
  *      parameters:
- *      -   in: body
- *          name: clasificacion
+ *      -   in: header
+ *          name: Authorization
  *          required: true
- *          description: La clasificacion a crear
+ *          type: string
+ *      -   in: body
+ *          name: entidad
+ *          required: true
+ *          description: La entidad a crear
  *          schema:
  *              type: object
  *              properties:
- *                  ClasificacionD:
+ *                  EntidadD:
  *                      type: string
  *      responses:
  *        "200":
- *          description: Clasificacion creada exitosamente
+ *          description: Entidad creada exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.post('/clasificaciones/', ClasificacionController.createClasificacion);
+router.post('/entidades', EntidadController.createEntidad);
 
 /**
  * @swagger
  * path:
- *  /clasificaciones:
+ *  /entidades:
  *    get:
- *      summary: Obtener una lista de todas las clasificaciones
+ *      summary: Obtener una lista de todas las entidades
  *      tags:
- *          - clasificacion
+ *          - entidad
  *      consumes:
  *          - application/json
+ *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      responses:
  *        "200":
- *          description: Clasificaciones obtenidas exitosamente
+ *          description: Entidades obtenidas exitosamente
  *          schema:
  *              type: array
  *              items:
  *                  properties:
- *                      IdClasificacion:
+ *                      IdEntidad:
  *                          type: integer
- *                      ClasificacionD:
+ *                      EntidadD:
  *                          type: string
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.get('/clasificaciones/', ClasificacionController.getClasificaciones);
+router.get('/entidades', EntidadController.getEntidades);
 
 /**
  * @swagger
  * path:
- *  /clasificacion/{id}:
+ *  /entidad/{id}:
  *    get:
- *      summary: Obtener detalles de una clasificacion
+ *      summary: Obtener detalles de una entidad
  *      tags:
- *          - clasificacion
+ *          - entidad
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
- *          description: id de la clasificacion a obtener
+ *          description: id de la entidad a obtener
  *          required: true
  *          type: integer
  *      responses:
  *        "200":
- *          description: Clasificacion obtenida exitosamente
+ *          description: Entidad obtenida exitosamente
  *          schema:
  *              type: object
  *              properties:
- *                  IdClasificacion:
+ *                  IdEntidad:
  *                      type: integer
- *                  ClasificacionD:
+ *                  EntidadD:
  *                      type: string
  *        "404":
- *          description: No existe una clasificacion con ese id
+ *          description: No existe una entidad con ese id
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.get('/clasificacion/:id', ClasificacionController.getClasificacion);
+router.get('/entidad/:id', EntidadController.getEntidad);
 
 /**
  * @swagger
  * path:
- *  /clasificacion/{id}:
+ *  /entidad/{id}:
  *    put:
- *      summary: Actualzar una clasificacion
+ *      summary: Actualzar una entidad
  *      tags:
- *          - clasificacion
+ *          - entidad
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
- *          description: id de la clasificacion a actualizar
+ *          description: id de la entidad a actualizar
  *          required: true
  *          type: integer
  *      -   in: body
- *          name: clasificacion
+ *          name: entidad
  *          required: true
- *          description: La clasificacion a actualizar
+ *          description: La entidad a actualizar
  *          schema:
  *              type: object
  *              properties:
- *                  ClasificacionD:
+ *                  EntidadD:
  *                     type: string
  *      responses:
  *        "200":
- *          description: Clasificacion actualizada exitosamente
+ *          description: Entidad actualizada exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.put('/clasificacion/:id', ClasificacionController.updateClasificacion);
+router.put('/entidad/:id', EntidadController.updateEntidad);
 
 /**
  * @swagger
  * path:
- *  /clasificacion/{id}:
+ *  /entidad/{id}:
  *    delete:
- *      summary: Eliminar una clasificacion
+ *      summary: Eliminar una entidad
  *      tags:
- *          - clasificacion
+ *          - entidad
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
- *          description: id de la clasificacion a eliminar
+ *          description: id de la entidad a eliminar
  *          required: true
  *          type: integer
  *      responses:
  *        "200":
- *          description: Clasificacion eliminada exitosamente
+ *          description: Entidad eliminada exitosamente
  *        "404":
  *          description: Error al realizar la consulta
  *        "500":
  *          description: Error de conexion con la base de datos
  */
-router.delete('/clasificacion/:id', ClasificacionController.deleteClasificacion);
+router.delete('/entidad/:id', EntidadController.deleteEntidad);
 
 module.exports = router;

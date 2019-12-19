@@ -14,6 +14,10 @@ const router = express.Router();
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: body
  *          name: usuario
  *          required: true
@@ -51,6 +55,11 @@ router.post('/usuarios', UsuarioController.createUsuario);
  *          - usuario
  *      consumes:
  *          - application/json
+ *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      responses:
  *        "200":
  *          description: Usuarios obtenidos exitosamente
@@ -86,6 +95,10 @@ router.get('/usuarios', UsuarioController.getUsuarios);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id del usuario a obtener
@@ -125,6 +138,10 @@ router.get('/usuario/:id', UsuarioController.getUsuario);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id del usuario a actualizar
@@ -168,6 +185,10 @@ router.put('/usuario/:id', UsuarioController.updateUsuario);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id del usuario a eliminar
@@ -182,5 +203,43 @@ router.put('/usuario/:id', UsuarioController.updateUsuario);
  *          description: Error de conexion con la base de datos
  */
 router.delete('/usuario/:id', UsuarioController.deleteUsuario);
+
+/**
+ * @swagger
+ * path:
+ *  /usuario/token:
+ *    post:
+ *      summary: Obtener token
+ *      tags:
+ *          - usuario
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *      -   in: body
+ *          name: credenciales
+ *          required: true
+ *          description: Credenciales del Uusario
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  CI:
+ *                      type: string
+ *                  Contrasena:
+ *                      type: string
+ *      responses:
+ *        "200":
+ *          description: Token obtenido correctamente
+ *          schema:
+ *              type: array
+ *              items:
+ *                  properties:
+ *                      Token:
+ *                          type: string
+ *        "404":
+ *          description: Error al realizar la consulta
+ *        "500":
+ *          description: Error de conexion con la base de datos
+ */
+router.post('/usuario/token', UsuarioController.getToken);
 
 module.exports = router;

@@ -14,6 +14,10 @@ const router = express.Router();
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: body
  *          name: ubicacion
  *          required: true
@@ -43,6 +47,11 @@ router.post('/ubicaciones/', UbicacionController.createUbicacion);
  *          - ubicacion
  *      consumes:
  *          - application/json
+ *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      responses:
  *        "200":
  *          description: Ubicaciones obtenidas exitosamente
@@ -72,6 +81,10 @@ router.get('/ubicaciones/', UbicacionController.getUbicaciones);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id de la ubicacion a obtener
@@ -105,6 +118,10 @@ router.get('/ubicacion/:id', UbicacionController.getUbicacion);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id de la ubicacion a actualizar
@@ -140,6 +157,10 @@ router.put('/ubicacion/:id', UbicacionController.updateUbicacion);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id de la ubicacion a eliminar

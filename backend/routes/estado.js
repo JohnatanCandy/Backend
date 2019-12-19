@@ -14,6 +14,10 @@ const router = express.Router();
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: body
  *          name: estado
  *          required: true
@@ -43,6 +47,11 @@ router.post('/estados', EstadoController.createEstado);
  *          - estado
  *      consumes:
  *          - application/json
+ *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      responses:
  *        "200":
  *          description: Estados obtenidos exitosamente
@@ -72,6 +81,10 @@ router.get('/estados', EstadoController.getEstados);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id del estado a obtener
@@ -105,6 +118,10 @@ router.get('/estado/:id', EstadoController.getEstado);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id del estado a actualizar
@@ -140,6 +157,10 @@ router.put('/estado/:id', EstadoController.updateEstado);
  *      consumes:
  *          - application/json
  *      parameters:
+ *      -   in: header
+ *          name: Authorization
+ *          required: true
+ *          type: string
  *      -   in: path
  *          name: id
  *          description: id del estado a eliminar
